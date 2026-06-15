@@ -39,6 +39,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 1.7849401
       objectReference: {fileID: 0}
+    - target: {fileID: 4951289651851198497, guid: 92ac7744b224c5d43a3a4cbf93a4a052,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7224309683680067548, guid: 92ac7744b224c5d43a3a4cbf93a4a052,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -150,7 +155,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
