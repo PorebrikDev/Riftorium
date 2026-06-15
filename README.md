@@ -1,5 +1,5 @@
 # 2D Top-Down RPG (Portfolio Project)
-
+<img width="483" height="388" alt="Image" src="https://github.com/user-attachments/assets/819fdf06-ef44-4959-9da0-5d8200713e0e" />
 ## About
 A hand-crafted 2D top-down RPG built entirely in Unity. All assets, sprites, tilemaps, and animations are created manually. Features procedural cave levels, animated environments, and a functional combat & tool system.
 
