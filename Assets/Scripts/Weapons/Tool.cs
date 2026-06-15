@@ -1,17 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class Tool : MonoBehaviour
 {
-    public event EventHandler OnToolUse;
+    public event Action OnToolUse;
 
-    [SerializeField] private ToolType toolType;
-    [SerializeField] private int damageAmount = 1;
-    public ToolType Type => toolType;
-    public int DamageAmount => damageAmount;
+    public int DamageAmount => _damageAmount;
+    public ToolType Type => _toolType;
+
+    [SerializeField] private ToolType _toolType;
+    [SerializeField] private int _damageAmount = 1;
 
     private HitBoxNew _hitBox;
 
@@ -19,19 +17,10 @@ public class Tool : MonoBehaviour
     {
         _hitBox = GetComponentInChildren<HitBoxNew>();
     }
-    public void BoxOn()
-    {
-        _hitBox.HitBoxOn();
-    }
-    public void BoxOff()
-    {
-        _hitBox.HitBoxOff();
-    }
 
+    public void BoxOn() => _hitBox.HitBoxOn();
 
-    public void Attack()
-    {
-        
-        OnToolUse?.Invoke(this, EventArgs.Empty);
-    }
+    public void BoxOff() =>  _hitBox.HitBoxOff();
+
+    public void Attack() => OnToolUse?.Invoke();
 }

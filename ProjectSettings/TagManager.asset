@@ -13,7 +13,7 @@ TagManager:
   - UI
   - "\u0421ave"
   - Cave2
-  - 
+  - Player
   - 
   - CinemashineConfiner
   - 
@@ -33,9 +33,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - x
+  - TestNav
+  - NoNAV
   - UI_BlockInput
   m_SortingLayers:
   - name: Default

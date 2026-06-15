@@ -1,39 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class FlashBlink : MonoBehaviour
 {
-    private Material blinkMaterial;
-    private Material defultMaterial;
-    private SpriteRenderer spriteRenderer;
+    [Inject] private readonly Player _player;
+
+    [SerializeField] private Material _blinkMaterial;
+
+    private Material _defultMaterial;
+    private SpriteRenderer _spriteRenderer;
+    private WaitForSeconds _wait;
+    private readonly float _timeBlick = 0.2f;
+
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defultMaterial = spriteRenderer.material;
-        blinkMaterial = Resources.Load<Material>("Materials/FlashBlink");
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _defultMaterial = _spriteRenderer.material;
+        _wait = new WaitForSeconds(_timeBlick);
     }
-    private void Start()
+
+    private void OnEnable()
     {
-        Player.Instance.OnFlashBlink += DamageObject_OnFlashBlink;
+        _player.OnFlashBlink += OnFlashBlink;
     }
+
     private void OnDisable()
     {
-        Player.Instance.OnFlashBlink -= DamageObject_OnFlashBlink;
+        _player.OnFlashBlink -= OnFlashBlink;
+        StopAllCoroutines();
     }
-    private void DamageObject_OnFlashBlink(object sender, System.EventArgs e)
+
+    private void OnFlashBlink()
     {
         StartCoroutine(SetBlinkingMaterial());
     }
+
     private IEnumerator SetBlinkingMaterial()
     {
-        spriteRenderer.material = blinkMaterial;
-        yield return new WaitForSeconds(0.2f);
-        spriteRenderer.material = defultMaterial;
-        yield return new WaitForSeconds(0.2f);
-        spriteRenderer.material = blinkMaterial;
-        yield return new WaitForSeconds(0.2f);
-        spriteRenderer.material = defultMaterial;
+        _spriteRenderer.material = _blinkMaterial;
+        yield return _wait;
+        _spriteRenderer.material = _defultMaterial;
+        yield return _wait;
+        _spriteRenderer.material = _blinkMaterial;
+        yield return _wait;
+        _spriteRenderer.material = _defultMaterial;
     }
-
 }

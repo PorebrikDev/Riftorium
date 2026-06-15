@@ -1,104 +1,114 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
+[RequireComponent(typeof(KnockBack))]
+[RequireComponent(typeof(PolygonCollider2D))]
 
-
-public class EnemyEntity : MonoBehaviour, IDamageable
+public class EnemyEntity : MonoBehaviour, IDamageableInt
 {
-    [SerializeField] private EnemySO _enemySO;
-    [SerializeField] private EnemyPool _enemyPool;
 
     public event EventHandler OnTakeHit;
     public event EventHandler OnEnemyDeath;
 
-    private PolygonCollider2D _poligonCollider2D;
+    [SerializeField] private EnemySO _enemySO;
+    [SerializeField] private EnemyPool _enemyPool;
+    [SerializeField] private AudioClip _enemyClip;
+
+    [Inject] private AudioManager _audioManager;
+
+    private PolygonCollider2D _collider;
     private KnockBack _knockBack;
+
+    private readonly float _attackCooldown = 1.0f;
     private float _currentHealth;
+    private float _lastDamageTime;
+
     private bool _canTakeDamage;
     private bool _isAlive;
-    private float _damageRecaveryRutineSo;
-    private bool BoolNavMeshUsing;
 
+    private WaitForSeconds _wait;
 
 
     private void Awake()
     {
-        _poligonCollider2D = GetComponent<PolygonCollider2D>();
+        _collider = GetComponent<PolygonCollider2D>();
         _knockBack = GetComponent<KnockBack>();
+        _wait = new WaitForSeconds(_enemySO.damageRecoveryTime);
     }
+
     private void OnEnable()
     {
         _canTakeDamage = true;
         _isAlive = true;
         _currentHealth = _enemySO.enemyHealth;
-        _damageRecaveryRutineSo = _enemySO.damageRecoveryTime;
-    }
-    public void Init(EnemyPool pool) { _enemyPool = pool; }
-    public void PoligonColliderTurnOff()
-    {
-        _poligonCollider2D.enabled = false;
-    }
-    public void PoligonColliderTurnOn()
-    {
-        _poligonCollider2D.enabled = true;
     }
 
-
-    public void TakeHit(Tool tool)
+    public void TakeDamage(DamageContext ctx)
     {
-        //if (tool.Type != ToolType.Sword)
-        //    return;
-        TakeDamage(tool.DamageAmount, tool.transform.root);
+        if (!_canTakeDamage || !_isAlive) return;
 
-    }
+        _canTakeDamage = false;
 
+        _currentHealth -= ctx.Damage;
 
+        _audioManager.PlaySFXRandomPitch(_enemyClip, 1f, 0.6f, 1.3f);
 
-    public void TakeDamage( int damage, Transform damageSource)
-    {
-        if (_canTakeDamage && _isAlive)
-        {
-            _canTakeDamage = false;
-            _currentHealth -= damage;
-            _knockBack.GetKnockedBack(damageSource);
-            OnTakeHit?.Invoke(this, EventArgs.Empty);
-            DetectDeath();
-            Debug.Log("текущее хп" + _currentHealth + "урон нанесен" + damage);
-            DamagePoolUi.instance.ShowDamage(damage, transform, Color.blue);
-            StartCoroutine(DamageRecoveryTimeSlime());
-        }
-    }
-    private IEnumerator DamageRecoveryTimeSlime()
-    {
-        yield return new WaitForSeconds(_damageRecaveryRutineSo);
-        _canTakeDamage=true;
+        _knockBack.GetKnockedBack(ctx.Source);
+
+        OnTakeHit?.Invoke(this, EventArgs.Empty);
+
+        Debug.Log("текущее хп = " + _currentHealth + "| Нанесенный урон = " + ctx.Damage);
+
+        DamagePoolUi.instance.ShowDamage(ctx.Damage, transform, Color.blue);
+
+        DetectDeath();
+
+        StartCoroutine(DamageRecoveryTimeSlime());
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.TryGetComponent(out Player player))
+        if (collision.TryGetComponent(out Player player))
         {
-            player.TakeDamage(transform, _enemySO.enemyDamageAmount);
+            if(Time.time - _lastDamageTime < _attackCooldown) return;
+
+            _lastDamageTime = Time.time;
+
+            DamageContext ctx = new DamageContext(
+                _enemySO.enemyDamageAmount,
+                transform);
+
+            player.TakeDamage(ctx);
         }
     }
+
+    public void Init(EnemyPool pool) => _enemyPool = pool;
+
+    public void ReturnToPoolAnimation() => _enemyPool.ReturnToPool(gameObject);
+
+    public void PoligonColliderTurnOn() => _collider.enabled = true;
+
+    public void PoligonColliderTurnOff() => _collider.enabled = false;
+
     private void DetectDeath()
     {
         if (_currentHealth <= 0 && _isAlive)
         {
             _isAlive = false;
             OnEnemyDeath?.Invoke(this, EventArgs.Empty);
-           
         }
     }
-    public void ReturnToPoolAnimation()
+
+    private IEnumerator DamageRecoveryTimeSlime()
     {
-        _enemyPool.ReturnToPool(gameObject);
+        yield return _wait;
+        _canTakeDamage = true;
     }
+
     private void OnDisable()
     {
         StopAllCoroutines();
     }
-
 }

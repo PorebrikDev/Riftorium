@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemySO: {fileID: 11400000, guid: 171422eff7f138e43be59bc228429720, type: 2}
   _enemyPool: {fileID: 0}
+  _enemyClip: {fileID: 8300000, guid: 1bfa3d3346b2a4b4d8bd5a4d9e4d4a09, type: 3}
 --- !u!114 &4681617698731961585
 MonoBehaviour:
   m_ObjectHideFlags: 0

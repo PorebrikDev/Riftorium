@@ -1,39 +1,36 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HotBatInventory : MonoBehaviour
 {
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private Image[] _hotbarIcons;
 
-    [SerializeField] private Image[] hotbarIcons;
-
-
-    private void Awake()
+    private void Start()
     {
-        inventory.OnInventoryChanged += UpdateHotbar;
+        _inventory.OnInventoryChanged += UpdateHotbar;
     }
 
     private void OnDestroy()
     {
-        inventory.OnInventoryChanged -= UpdateHotbar;
+        _inventory.OnInventoryChanged -= UpdateHotbar;
     }
-    private void UpdateHotbar(object sender, EventArgs e)
+
+    private void UpdateHotbar()
     {
-        for (int i = 0; i < hotbarIcons.Length; i++)
+        for (int i = 0; i < _hotbarIcons.Length; i++)
         {
-            var slot = inventory.inventorySlots[i];
-            if (slot.slotItem != null)
+            var slot = _inventory.InventorySlots[i];
+            if (slot.SlotItem != null)
             {
-                hotbarIcons[i].sprite = slot.slotItem.icon;
-                hotbarIcons[i].enabled = true;
+                _hotbarIcons[i].sprite = slot.SlotItem.icon;
+                _hotbarIcons[i].enabled = true;
             }
+
             else 
             {
-                hotbarIcons[i].sprite = null;
-                hotbarIcons[i].enabled = false;
+                _hotbarIcons[i].sprite = null;
+                _hotbarIcons[i].enabled = false;
             }
         }
     }

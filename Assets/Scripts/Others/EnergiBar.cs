@@ -1,19 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class EnergiBar : MonoBehaviour
 {
-    private Image image;
+    [Inject] private readonly Player _player;
+
+    private Image _image;
 
     private void Awake()
     {
-        image = GetComponent<Image>();
+        _image = GetComponent<Image>();
+    }
+    private void Start()
+    {
+        _player.OnChangeMp += ChangeEnergiBar;
     }
 
-    private void ChangeEnergiBar()
+    private void OnEnable()
     {
-        image.fillAmount = 1;
+        _image.fillAmount = 1;
+    }
+
+    private void OnDestroy()
+    {
+        _player.OnChangeMp -= ChangeEnergiBar;
+    }
+
+    private void ChangeEnergiBar(float Energy)
+    {
+        _image.fillAmount = Energy / _player.MaxMana;
     }
 }

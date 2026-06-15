@@ -1,47 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class TapSlotHot : MonoBehaviour
 {
-    private Button button;
+    [SerializeField] private int _buttonIndex;
+    [SerializeField] private Image _image;
 
-    [SerializeField] private InventorySlot inventorySlot;
-    [SerializeField] private int buttonIndex;
-    [SerializeField] private ItemSO xxx;
+    [Inject] private readonly InputService _input;
+    [Inject] private readonly Inventory _inventory;
+    [Inject] private readonly UseOfItems _useOfItems;
+
+    private Button _clickButton;
 
     private void Awake()
     {
-        button = GetComponent<Button>();
-
-
-
+        _clickButton = GetComponent<Button>();
+        _clickButton.onClick.AddListener(OnButtonClicked);
+        _input.OnNumberKeyPressed += ClickHotSlot;
+        _image = transform.GetChild(0).GetComponent<Image>();
     }
-    private void OnEnable()
-    {
-        GameInput.Instance.OnNumberKeyStarted += ClickHotSlot;
-    }
+
     private void Start()
     {
-        button.onClick.AddListener(() =>  ClickHotSlot(null, buttonIndex));
+        _inventory.OnInventoryChanged += UpdateIcon;
+
+        UpdateIcon();
     }
 
-    private void ClickHotSlot(object sender, int index)
+    private void OnDestroy()
     {
-        if (index != buttonIndex)
+        _input.OnNumberKeyPressed -= ClickHotSlot;
+        _clickButton.onClick.RemoveListener(OnButtonClicked);
+        _inventory.OnInventoryChanged -= UpdateIcon;
+    }
+
+    private void UpdateIcon()
+    {
+        InventorySlot slot = _inventory.InventorySlots[_buttonIndex];
+
+        if (slot == null || slot.SlotItem == null)
+        {
+            _image.sprite = null;
+            _image.enabled = false;
+            return;
+        }
+
+        _image.sprite = slot.Icon.sprite;
+        _image.enabled = true;
+    }
+
+    private void OnButtonClicked()
+    {
+        ClickHotSlot(_buttonIndex);
+    }
+
+    private void ClickHotSlot(int index)
+    {
+        if (index != _buttonIndex)
             return;
 
-        if (inventorySlot == null || inventorySlot.slotItem == null)
+        InventorySlot slot = _inventory.InventorySlots[_buttonIndex];
+
+        if (slot == null || slot.SlotItem == null)
+        {
+            _image.enabled = false;
             return;
+        }
 
-        ItemSO item = inventorySlot.slotItem;
-        xxx = item;
-        UseOfItems.Instance.Use(item);
-    }
-    private void OnDisable()
-    {
-        GameInput.Instance.OnNumberKeyStarted -= ClickHotSlot;
-    }
+        _image.sprite = slot.Icon.sprite;
+        _image.enabled = true;
 
+        _useOfItems.Use(slot.SlotItem);
+    }
 }

@@ -102,6 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 5726061884405139662, guid: 762b6bff4c0f10d46a52789261094a82,
     type: 3}
+  hp: 3
+  _clip: {fileID: 8300000, guid: 6c10ad43ae02bb14ba0a0aad55333e38, type: 3}
 --- !u!61 &815060308819278879
 BoxCollider2D:
   m_ObjectHideFlags: 0

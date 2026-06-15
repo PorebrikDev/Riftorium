@@ -1,45 +1,55 @@
 using UnityEngine;
+using Zenject;
 
 public class HitBoxNew : MonoBehaviour
 {
-    [SerializeField] private float _hitboxOffset = 1f;
+    [Inject] private readonly Player _player;
 
     private Tool _tool;
-    private PolygonCollider2D _PolCol;
+    private PolygonCollider2D _collider;
 
     private void Awake()
     {
         _tool = GetComponentInParent<Tool>();
-        _PolCol = GetComponent<PolygonCollider2D>();
+        _collider = GetComponent<PolygonCollider2D>();
     }
 
     private void Start()
     {
-        _PolCol.enabled = false;
+        _collider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IDamageable damageable))
+        if (collision.TryGetComponent(out IDamageableInt damageable))
         {
-            damageable.TakeHit(_tool);
+            DamageContext context = new DamageContext(
+                _tool.DamageAmount,
+                _tool.transform.root,
+                _tool.Type);
+
+            damageable.TakeDamage(context);
         }
     }
 
     public void HitBoxOn()
     {
-        _PolCol.enabled = true;
+        Vector2 dir = _player.LastMoveDirection;
 
-        Vector2 dir = Player.Instance.LastMoveDirection;
+        if (dir.y > 0)
+            transform.localPosition = new Vector3(0f, 1.0f, 0f);      
+        else if (dir.y < 0)
+            transform.localPosition = new Vector3(0f, -0.2f, 0f);     
+        else if (dir.x > 0)
+            transform.localPosition = new Vector3(0.8f, 0.6f, 0f);      
+        else if (dir.x < 0)
+            transform.localPosition = new Vector3(-0.8f, 0.6f, 0f);    
 
-        transform.localPosition = new Vector3(
-            dir.x * _hitboxOffset,
-            dir.y * _hitboxOffset,
-            0f);
+        _collider.enabled = true;
     }
 
     public void HitBoxOff()
     {
-        _PolCol.enabled = false;
+        _collider.enabled = false;
     }
 }

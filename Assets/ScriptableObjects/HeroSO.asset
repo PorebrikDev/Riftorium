@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: HeroSO
   m_EditorClassIdentifier: 
   heroName: Player
-  currentHealth: 15
   maxHealth: 15
+  MaxMana: 20
   heroDamageAmount: 1
   heroBaseSpeed: 4
   heroDashMultiplier: 1.5
-  heroJerkMultiplier: 4
-  herpJerkTimer: 0.1
+  heroJerkMultiplier: 3
+  herpJerkTimer: 0.3
+  herpJerkStength: 50
   defense: 0
-  damageRecoveryTime: 2
+  damageRecoveryTime: 1.3
   critChance: 0
   critDamage: 0

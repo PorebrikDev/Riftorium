@@ -15,5 +15,10 @@ MonoBehaviour:
   Name: Vase
   Description: The most originaly vase
   icon: {fileID: 21300000, guid: 2e4d4a9b444577f469ad39b9a46ddb5d, type: 3}
+  Clip: {fileID: 8300000, guid: c15ad92c210aba14994a8a10fbe1c423, type: 3}
   isHealing: 1
-  healingPower: 15
+  HealingPower: 5
+  IsManaRestore: 0
+  ManaRestorePower: 0
+  isTool: 0
+  toolIndex: 0

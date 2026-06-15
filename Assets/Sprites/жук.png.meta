@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,43 +97,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0001-sheet-export_0
+      name: "\u0436\u0443\u043A_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 79
-        height: 160
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 1, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab971087b8b8f834ca2d9fdd34e00ec7
-      internalID: -1381664714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-0001-sheet-export_1
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 0
-        width: 79
-        height: 160
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 851bbd26fc422f64c810e3cf9b1aafe5
-      internalID: -523697502
+      spriteID: 5b9e41b7283188a47874bc13beea7aaf
+      internalID: -967997509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0436\u0443\u043A_1"
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b90b44611c16174f937ccdf1c2ad04f
+      internalID: -2143229597
       vertices: []
       indices: 
       edges: []
@@ -149,8 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-0001-sheet-export_0: -1381664714
-      Sprite-0001-sheet-export_1: -523697502
+      "\u0436\u0443\u043A_0": -967997509
+      "\u0436\u0443\u043A_1": -2143229597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

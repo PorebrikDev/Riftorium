@@ -1,26 +1,30 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerVisual : MonoBehaviour
 {
+    public event Action OnDeath;
+
     [SerializeField] private Animator animator;
     [SerializeField] private ActiveWeapon activeWeapon;
 
+    [Inject] private readonly Player _player;
+
     private void Start()
     {
-        Player.Instance.OnPlayerDeath += Player_OnPlayerDeath;
+        _player.OnPlayerDeath += Player_OnPlayerDeath;
     }
- 
 
-    public Animator GetAnimator() { return animator; }
-
-
+    private void OnDestroy()
+    {
+        _player.OnPlayerDeath -= Player_OnPlayerDeath;
+    }
 
     public void UpdateWeaponAnimator(Vector2 move)
     {
         animator.SetFloat("Speed", move.sqrMagnitude);
+
         if (move.sqrMagnitude > 0.01f)
         {
             animator.SetFloat("MoveX", move.x);
@@ -28,12 +32,16 @@ public class PlayerVisual : MonoBehaviour
         }
     }
 
-    private void Player_OnPlayerDeath(object sender, System.EventArgs e)
+    public Animator GetAnimator() => animator;
+
+    public void UIDeathMenu()
+    {
+        OnDeath?.Invoke();
+       _player.gameObject.SetActive(false);
+    }
+
+    private void Player_OnPlayerDeath()
     {
         animator.SetBool("IsDie", true);
-    }
-    private void OnDisable()
-    {
-        Player.Instance.OnPlayerDeath -= Player_OnPlayerDeath;
     }
 }

@@ -1,46 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class SwordVisual : MonoBehaviour
 {
-    [SerializeField] private Tool tool;
-    [SerializeField] private HitBoxNew hitBox;
+    private const string Attack = "Attack";
 
-    private Animator animator;
-    private const string ATTACK = "Attack";
+    [SerializeField] private Tool _tool;
+    [SerializeField] private HitBoxNew _hitBox;
+
+    [Inject] InputService _input;
+
+    private Animator _animator;
+
     private void Awake()
     {
-        animator = GetComponent<Animator>();    
+        _animator = GetComponent<Animator>();
     }
+
     private void OnEnable()
     {
-        tool.OnToolUse += Tool_OnToolUse;
+        _tool.OnToolUse += Tool_OnToolUse;
     }
-    private void Tool_OnToolUse(object sender, System.EventArgs e)
-    {
-        animator.SetTrigger(ATTACK);
-    }
-    public void Update()
-    {
-        Vector2 move = GameInput.Instance.GetMovementVector();
-        animator.SetFloat("Speed", move.sqrMagnitude);
-        if (move.sqrMagnitude > 0.01f)
-        {
-            animator.SetFloat("MoveX", move.x);
-            animator.SetFloat("MoveY", move.y);
-        }
-    }
-    //public void Attack_Hero_Start()
-    //{ hitBox.AttackColiderTurnOn(); }
-    //public void Attack_Hero_End() 
-    //{ hitBox.AttackColiderTurnOff(); }
 
     private void OnDisable()
     {
-        tool.OnToolUse -= Tool_OnToolUse;
-
+        _tool.OnToolUse -= Tool_OnToolUse;
     }
+
+    public void Update()
+    {
+        Vector2 movement = _input.GetMovementVector();
+        UpdateAnimator(movement);
+    }
+
+    private void UpdateAnimator(Vector2 movement)
+    {
+        _animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if (movement.sqrMagnitude <= 0.01f)
+            return;
+
+        _animator.SetFloat("MoveX", movement.x);
+        _animator.SetFloat("MoveY", movement.y);
+    }
+
+    private void Tool_OnToolUse() => _animator.SetTrigger(Attack);
 }
 
 

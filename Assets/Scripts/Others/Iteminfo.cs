@@ -1,81 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 
 public class Iteminfo : MonoBehaviour
 {
-    public static Iteminfo Instance;
-    private Image BackGround;
-    private TMP_Text title;
-    private TMP_Text description;
-    private Image Icon;
-    private Button closeButton;
-    private Button useButton;
-    private Button dropButton;
-    [SerializeField] private ItemSO currentItem;
-    [SerializeField] private GameObject itemObj;
-    private InventorySlot CurrentSlot;
+    [Inject] private readonly UseOfItems _useOfItems;
+    [Inject] private readonly Player _player;
+    [Inject] private readonly LocationManager _locationManager;
+
+    [SerializeField] private ItemSO _currentItem;
+    [SerializeField] private GameObject _itemObj;
+
+    private Image _backGround;
+    private Image _icon;
+
+    private TMP_Text _title;
+    private TMP_Text _description;
+
+    private Button _closeButton;
+    private Button _useButton;
+    private Button _dropButton;
+
+    private InventorySlot _currentSlot;
 
     private void Awake()
     {
-        Instance = this;
-        BackGround = GetComponent<Image>();
-        title = transform.GetChild(0).GetComponent<TMP_Text>();
-        description = transform.GetChild(1).GetComponent<TMP_Text>();
-        Icon = transform.GetChild(2).GetComponent<Image>();
-        closeButton = transform.GetChild(3).GetComponent<Button>();
-        useButton = transform.GetChild(4).GetComponent<Button>();
-        dropButton = transform.GetChild(5).GetComponent<Button>();
+        _backGround = GetComponent<Image>();
 
-        closeButton.onClick.AddListener(Close);
-        useButton.onClick.AddListener(Use);
-        dropButton.onClick.AddListener(Drop);
+        _title = transform.GetChild(0).GetComponent<TMP_Text>();
+        _description = transform.GetChild(1).GetComponent<TMP_Text>();
+
+        _icon = transform.GetChild(2).GetComponent<Image>();
+
+        _closeButton = transform.GetChild(3).GetComponent<Button>();
+        _useButton = transform.GetChild(4).GetComponent<Button>();
+        _dropButton = transform.GetChild(5).GetComponent<Button>();
+
+        _closeButton.onClick.AddListener(Close);
+        _useButton.onClick.AddListener(Use);
+        _dropButton.onClick.AddListener(Drop);
     }
+
+    private void OnDestroy()
+    {
+        _closeButton.onClick.RemoveListener(Close);
+        _useButton.onClick.RemoveListener(Use);
+        _dropButton.onClick.RemoveListener(Drop);
+    }
+
+    public void Open(ItemSO item, GameObject itemObject, InventorySlot _currentSlot)
+    {
+        _currentItem = item;
+        _itemObj = itemObject;
+        ChangeInfo(item);
+        gameObject.SetActive(true);
+        this._currentSlot = _currentSlot;
+    }
+
     public void ChangeInfo(ItemSO item)
     {
-      
-        title.text = item.Name;
-        description.text = item.Description;
-        Icon.sprite = item.icon;
+        _title.text = item.Name;
+        _description.text = item.Description;
+        _icon.sprite = item.icon;
     }
-    public void Use()
-    {
-        UseOfItems.Instance.Use(currentItem);
-    }
+
     public void Drop()
     {
-        if (currentItem.isTool == true && (int)ActiveWeapon.Instance.CurrentToolType == currentItem.toolIndex)
+        if (_currentItem.isTool && (int)ActiveWeapon.Instance.CurrentToolType == _currentItem.toolIndex)
         {
             UIActiveWeapon.Instance.ZeroIcone();
             WeaponZero();
         }
 
-        Vector2 DropPos = (Vector2)Player.Instance.transform.position + Player.Instance.LastMoveDirection;
-        itemObj.SetActive(true);
-        itemObj.transform.position = DropPos;
-        CurrentSlot.ClearSlot();
+        Vector2 dropPos = (Vector2) _player.transform.position +
+            _player.LastMoveDirection;
+
+        _itemObj.transform.SetParent(_locationManager.CurrentLocation);
+        _itemObj.transform.position = dropPos;
+
+        _itemObj.SetActive(true);
+        _itemObj.transform.position = dropPos;
+
+        _currentSlot.ClearSlot();
+
         Close();
     }
-    public void WeaponZero()
-    {
-        ActiveWeapon.Instance.SetActiveWeapon(3);
-    }
-    public void Open(ItemSO item, GameObject itemObject, InventorySlot _currentSlot)
-    {
-        
-        currentItem = item;
-        itemObj = itemObject;
-        ChangeInfo(item);
-        gameObject.SetActive(true);
-        CurrentSlot = _currentSlot;
-      
 
-    }
-    public void Close()
-    {
-        gameObject.SetActive(false);
-    }
+    public void Use() => _useOfItems.Use(_currentItem);
+
+    public void WeaponZero() => ActiveWeapon.Instance.SetActiveWeapon(3);
+
+    public void Close() => gameObject.SetActive(false);
 }

@@ -1,38 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class UseOfItems : MonoBehaviour
 {
-    public static UseOfItems Instance;
+    [Inject] private readonly Player _player;
+    [Inject] private readonly AudioManager _audioManager;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    
     public void Use(ItemSO item)
     {
         if (item.isHealing)
         {
             PlayerEffects.instance.HillEfect();
-            Player.Instance.HpRecovery(item);
-            Debug.Log("хилинг на " + item.healingPower);
+            _player.HpRecovery(item.HealingPower);
+            Debug.Log("хилинг на " + item.HealingPower);
         }
+
         if (item.isTool)
         {
             ChangeWeapon(item);
             UIActiveWeapon.Instance.ChangeIcone(item.icon);
         }
 
+        if (item.IsManaRestore)
+        {
+            _player.ChangeMana(item.ManaRestorePower);
+        }
 
+        if (!item.Clip)  return;
+
+        _audioManager.PlaySFX(item.Clip);
     }
 
     public void ChangeWeapon(ItemSO tool)
     {
         ActiveWeapon.Instance.SetActiveWeapon(tool.toolIndex);
     }
-    
-
-
 }

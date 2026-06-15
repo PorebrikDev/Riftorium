@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4ca1d2acf338248869ad6e8be224ae, type: 3}
+  m_Name: New Attack Down
+  m_EditorClassIdentifier: 
+  AttackName: AttackDown
+  AnimatorTrigger: AttackDown
+  HasHitbox: 1
+  HitboxIndex: 1
+  Damage: 5
+  TimeBoxEnabled: 0.2
+  Cooldown: 1.5
+  CriticalHit: 0
+  CritChance: 0

@@ -1,67 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 
 public class ActiveWeapon : MonoBehaviour
 {
     public static ActiveWeapon Instance { get; private set; }
-    public ToolType CurrentToolType => currentToolType;
-    [SerializeField] private Tool tool = null;
-    [SerializeField] private Animator weaponAnimator;
-    [SerializeField] private PlayerVisual playerVisual;
-    [SerializeField] private ToolType currentToolType;
 
-    [SerializeField] private Tool SwordTool;
-    [SerializeField] private Tool PickaxeTool;
-    [SerializeField] private Tool AxeTool;
-    [SerializeField] private Tool ZeroTool;
+    public ToolType CurrentToolType => _currentToolType;
 
+    [SerializeField] private Animator _weaponAnimator;
+    [SerializeField] private PlayerVisual _playerVisual;
+
+    [Header("Tools")]
+    [SerializeField] private Tool _swordTool;
+    [SerializeField] private Tool _pickaxeTool;
+    [SerializeField] private Tool _axeTool;
+    [SerializeField] private Tool _zeroTool;
+
+    [Inject] private InputService _input;
+
+    [SerializeField] private ToolType _currentToolType;
+    [SerializeField] private Tool _currentTool = null;
 
     public void Awake()
     {
         Instance = this;
-        currentToolType = ToolType.Zero;
-
+        _currentToolType = ToolType.Zero;
     }
+
     private void Update()
     {
-        Vector2 move = GameInput.Instance.GetMovementVector();
-        UpdateAnimator(weaponAnimator, move);
-        playerVisual.UpdateWeaponAnimator(move);
+        Vector2 move = _input.GetMovementVector();
+        UpdateAnimator(_weaponAnimator, move);
+        _playerVisual.UpdateWeaponAnimator(move);
     }
 
-    public Tool GetActiveWeapon()
-    {
-        return tool;
-    }
+    public Tool GetActiveWeapon() => _currentTool;
+
     public void SetActiveWeapon(int index)
     {
         switch (index)
         {
             case 0:
-                tool = SwordTool;    
-                currentToolType = ToolType.Sword;
+                _currentTool = _swordTool;
+                _currentToolType = ToolType.Sword;
                 break;
-            case 1: 
-                tool = PickaxeTool;   
-                currentToolType = ToolType.Pickaxe;
+            case 1:
+                _currentTool = _pickaxeTool;
+                _currentToolType = ToolType.Pickaxe;
                 break;
-            case 2: 
-                tool = AxeTool;     
-                currentToolType = ToolType.Axe;
+            case 2:
+                _currentTool = _axeTool;
+                _currentToolType = ToolType.Axe;
                 break;
             case 3:
-                tool = ZeroTool;
-                currentToolType = ToolType.Zero;
+                _currentTool = _zeroTool;
+                _currentToolType = ToolType.Zero;
                 break;
         }
-
-
     }
 
-
-    void UpdateAnimator(Animator anim, Vector2 move)
+    private void UpdateAnimator(Animator anim, Vector2 move)
     {
         anim.SetFloat("Speed", move.sqrMagnitude);
         if (move.sqrMagnitude > 0.01f)
@@ -70,17 +69,14 @@ public class ActiveWeapon : MonoBehaviour
             anim.SetFloat("MoveY", move.y);
         }
     }
+
     public void VisualAttack()
     {
-       
-      
-            weaponAnimator.SetInteger("ToolType", (int)tool.Type);
-            weaponAnimator.SetTrigger("Attack");
+        _weaponAnimator.SetInteger("ToolType", (int)_currentTool.Type);
+        _weaponAnimator.SetTrigger("Attack");
 
-            Animator bodyanimator = playerVisual.GetAnimator();
-            bodyanimator.SetInteger("ToolType", (int)tool.Type);
-            bodyanimator.SetTrigger("Attack");
-      
-
+        Animator bodyanimator = _playerVisual.GetAnimator();
+        bodyanimator.SetInteger("ToolType", (int)_currentTool.Type);
+        bodyanimator.SetTrigger("Attack");
     }
 }

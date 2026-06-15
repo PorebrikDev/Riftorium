@@ -1,47 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class InventorySlot : MonoBehaviour
 {
-    public ItemSO slotItem;
-    public Image icon;
-    public Button button;
-    public GameObject ItemObj;
+    public ItemSO SlotItem => _slotItem;
+    public Image Icon => icon;
+
+    [SerializeField] private Image icon;
+
+    [SerializeField] private ItemSO _slotItem;
+    [SerializeField] private Button _button;
+    [SerializeField] private GameObject ItemObj;
+
+    [SerializeField] private Transform _inventoryRoot;
+
+    [Inject] private readonly Inventory _inventory;
+    [Inject] private readonly Iteminfo _iteminfo;
 
     private void Awake()
     {
         icon = gameObject.transform.GetChild(0).GetComponent<Image>();
-        button = gameObject.GetComponent<Button>();
-        button.onClick.AddListener(ShowInfo);
+        _button = gameObject.GetComponent<Button>();
+
+        _button.onClick.AddListener(ShowInfo);
     }
+
+    private void OnDestroy()
+    {
+        _button.onClick.RemoveListener(ShowInfo);
+    }
+
     public void PutInSlot(ItemSO item, GameObject obj)
     {
         icon.sprite = item.icon;
-        slotItem = item;
+        _slotItem = item;
         icon.enabled = true;
+
         ItemObj = obj;
-        Inventory.Instance?.NotifyInventoryChanged();
+
+        obj.transform.SetParent(_inventoryRoot);
+
+        _inventory.NotifyInventoryChanged();
     }
+
     public void ShowInfo()
     {
-        if (slotItem != null)
+        if (_slotItem != null)
         {
-            Iteminfo.Instance.Open(slotItem, ItemObj, this);
+            _iteminfo.Open(_slotItem, ItemObj, this);
         }
-        else { Iteminfo.Instance.Close(); }
+        else { _iteminfo.Close(); }
     }
+
     public void ClearSlot()
     {
-        slotItem = null;
+        _slotItem = null;
         ItemObj = null;
+
         icon.sprite = null;
         icon.enabled = false;
-        Inventory.Instance?.NotifyInventoryChanged();
+
+        _inventory.NotifyInventoryChanged();
     }
-
-
 }
-
-

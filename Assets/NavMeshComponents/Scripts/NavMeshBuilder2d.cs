@@ -170,6 +170,9 @@ namespace NavMeshPlus.Extensions
                 }
                 int area = builder.defaultArea;
                 //if it is walkable
+
+
+                // вот оригинал
                 if (builder.defaultArea != 1 && !modifier.ignoreFromBuild)
                 {
                     AddDefaultWalkableTilemap(sources, builder, modifier);
@@ -352,6 +355,10 @@ namespace NavMeshPlus.Extensions
             else if (builder.useMeshPrefab != null || (builder.overrideByGrid && builder.useMeshPrefab != null))
             {
                 src.transform = Matrix4x4.TRS(Vector3.Scale(tilemap.GetCellCenterWorld(vec3int), builder.overrideVector), rot, size);
+                //// удали это ниже\
+                //src.transform = GetCellTransformMatrix(tilemap, builder.overrideVector, vec3int);
+
+
                 src.shape = NavMeshBuildSourceShape.Mesh;
                 src.sourceObject = sharedMesh;
             }

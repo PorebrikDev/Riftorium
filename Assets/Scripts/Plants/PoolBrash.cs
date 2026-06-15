@@ -1,24 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolBrash : MonoBehaviour
-{
+
+{    public List<GameObject> pool = new List<GameObject>();
+
     [SerializeField] private GameObject prefab;
     [SerializeField] private Transform BushPool;
     [SerializeField] private Transform BushLokalPlase;
-    public List<GameObject> pool = new List<GameObject>();
+
 
     private int _poolSize = 2;
 
     private void Awake()
     {
-
-
-
-
-
 
         for (int i = 0; i < _poolSize; i++)
         {
@@ -28,6 +23,7 @@ public class PoolBrash : MonoBehaviour
             pool.Add(obj);
         }
     }
+
     public GameObject GetBrash(Transform target)
     {
         foreach (GameObject brash in pool)
@@ -40,6 +36,7 @@ public class PoolBrash : MonoBehaviour
                 return brash;
             }
         }
+
         GameObject more = Instantiate(prefab, transform.position, Quaternion.identity, BushLokalPlase);
         return more;
     }
@@ -47,7 +44,5 @@ public class PoolBrash : MonoBehaviour
     {
         enemy.transform.SetParent(BushPool);
         enemy.SetActive(false);
-
     }
-
 }

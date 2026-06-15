@@ -3,17 +3,20 @@ using UnityEngine;
 public class PickUpObject : MonoBehaviour, IInteractable
 {
     public ItemSO item;
-    private GameObject _itemObj;
 
-    private void Start()
+    private GameObject self;
+
+    private void Awake()
     {
-        _itemObj = gameObject;
+        self = gameObject;
     }
+
+    public void Init(ItemSO data) => item = data;
+
     public void Interact()
     {
         Debug.Log("Предмет получен");
-        Inventory.Instance.PutInEmptySlot(item, _itemObj);
+        Inventory.Instance.PutInEmptySlot(item, self);
         gameObject.SetActive(false);
-
     }
 }

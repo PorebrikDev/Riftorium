@@ -1,0 +1,484 @@
+fileFormatVersion: 2
+guid: b9f6e07acbc2b2a45aff3c96598fc28c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NewGrand_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 0}
+        - {x: -2, y: 0}
+        - {x: -13, y: -9}
+        - {x: -16, y: -16}
+        - {x: -16, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dc94790bf6d3a6468e1cdfb8a53836b
+      internalID: -333194115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 0}
+        - {x: -48, y: 0}
+        - {x: -48, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4246100b2b20f448890979c7064a51
+      internalID: -434569812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -17}
+        - {x: 10, y: -6}
+        - {x: 0, y: 0}
+        - {x: -48, y: 0}
+        - {x: -48, y: -48}
+        - {x: 16, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d105e81c33a3ce40a1ddaebb3351a46
+      internalID: -274696844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: -15}
+        - {x: 48, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -48}
+        - {x: 16, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbbfe2ed31cf58345aa6f1af965dc53b
+      internalID: 1758884972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -15}
+        - {x: -16, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13829a8765aac7f41859987e5956d00a
+      internalID: -741643965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 48}
+        - {x: -16, y: 48}
+        - {x: -16, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a649b58fd21b37438c4e56ecebc8a2a
+      internalID: 566882058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06a1f97fa57f1f4887523e86856c745
+      internalID: -209730539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 16, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -48}
+        - {x: 16, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e692c6e619c9d458237be2b057887a
+      internalID: 177410452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: -2}
+        - {x: 24, y: 21}
+        - {x: 16, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e72148d245f9e6544bf13cc93ab8028f
+      internalID: -1786379387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 48}
+        - {x: -16, y: 48}
+        - {x: -26, y: 18}
+        - {x: -48, y: -1}
+        - {x: -48, y: -48}
+        - {x: 48, y: -48}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090d3ad08aa09d547bcab96618952e28
+      internalID: 1983031394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 48}
+        - {x: -16, y: 48}
+        - {x: -16, y: -2}
+        - {x: -10, y: -11}
+        - {x: -2, y: -16}
+        - {x: 48, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86ee13f89fb343408e627352085955f
+      internalID: -1275429336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 48, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -16}
+        - {x: 48, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eee55e95a021b74db0d6f14682e1f66
+      internalID: -972322420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 9, y: -11}
+        - {x: 15, y: -3}
+        - {x: 16, y: 48}
+        - {x: -48, y: 48}
+        - {x: -48, y: -16}
+        - {x: 2, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a100eda821a6ba24390db5f4a031c81b
+      internalID: 1849836349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NewGrand_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9802490a0ef4d049afd8f742fe6ab79
+      internalID: 848829551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0fd2fb4bdf2828a438206cfa471f3f53
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      NewGrand_0: -333194115
+      NewGrand_1: -434569812
+      NewGrand_10: -1275429336
+      NewGrand_11: -972322420
+      NewGrand_12: 1849836349
+      NewGrand_13: 848829551
+      NewGrand_2: -274696844
+      NewGrand_3: 1758884972
+      NewGrand_4: -741643965
+      NewGrand_5: 566882058
+      NewGrand_6: -209730539
+      NewGrand_7: 177410452
+      NewGrand_8: -1786379387
+      NewGrand_9: 1983031394
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Slime
   enemyHealth: 16
-  enemyDamageAmount: 1
-  damageRecoveryTime: 0.5
+  enemyDamageAmount: 2
+  damageRecoveryTime: 0.8
+  moveSpeed: 4
+  acceleration: 8
