@@ -1,15 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Player_Interact : MonoBehaviour
 {
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private LayerMask interactLayer;
 
+    [Inject] private readonly Player _player;
+    private float interactDistance = 1f;
+
+
     public void TryInteract()
     {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, interactRadius, interactLayer);
+        Vector2 interactPosition = (Vector2)transform.position + _player.LastMoveDirection.normalized * interactDistance;
+        Collider2D collider = Physics2D.OverlapCircle(interactPosition, interactRadius, interactLayer);
 
         if (collider == null)
         {
@@ -25,7 +29,14 @@ public class Player_Interact : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (_player == null) return;
+
+        Vector2 interactPosition =
+            (Vector2)transform.position +
+            _player.LastMoveDirection.normalized * interactDistance;
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactRadius);
+        Gizmos.DrawWireSphere(interactPosition, interactRadius);
     }
+
 }

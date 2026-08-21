@@ -21,6 +21,7 @@ public class DamagePoolUi : MonoBehaviour
             pool.Add(obj);
         }
     }
+
     public void ShowDamage(int damage, Transform target, Color color)
     {
         var obj = pool.Find(x => !x.gameObject.activeInHierarchy);

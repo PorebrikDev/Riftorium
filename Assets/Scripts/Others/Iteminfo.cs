@@ -74,8 +74,9 @@ public class Iteminfo : MonoBehaviour
             WeaponZero();
         }
 
-        Vector2 dropPos = (Vector2) _player.transform.position +
-            _player.LastMoveDirection;
+        Vector2 dropPos = (Vector2) _player.transform.position + _player.LastMoveDirection;
+        PickUpObject pickUp = _itemObj.GetComponent<PickUpObject>();
+        pickUp.Init(_currentItem, _currentSlot.Amount);
 
         _itemObj.transform.SetParent(_locationManager.CurrentLocation);
         _itemObj.transform.position = dropPos;

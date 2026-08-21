@@ -29,6 +29,8 @@ public class TreeResource : MonoBehaviour, IDamageableInt
     private BoxCollider2D _boxCollider;
     private Transform _parent;
 
+    private int _amount = 1;
+
 
     private bool _isTakeDamage = true;
 
@@ -55,7 +57,7 @@ public class TreeResource : MonoBehaviour, IDamageableInt
 
         _currentHealth -= _amountHit;
 
-        _audioManager.PlaySFXRandomPitch(_axeSound, 1f , 0.8f, 1.1f);
+        _audioManager.PlaySFXRandomPitch(_axeSound, 1f, 0.8f, 1.1f);
 
         _tweenHit = DOTween.Sequence()
             .Append(_parent.DORotate(new Vector3(0f, 0f, 3f), 0.3f))
@@ -95,14 +97,14 @@ public class TreeResource : MonoBehaviour, IDamageableInt
 
     private void DropFireWoods()
     {
-        GameObject obj = Instantiate(_prefab, _parent.position , Quaternion.identity);
+        GameObject obj = Instantiate(_prefab, _parent.position, Quaternion.identity);
 
         Vector3 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
         float distance = UnityEngine.Random.Range(1.5f, 3f);
 
-        obj.GetComponent<PickUpObject>().Init(_fireWoodSO);
+        obj.GetComponent<PickUpObject>().Init(_fireWoodSO, _amount);
         obj.transform.SetParent(_locationManager.CurrentLocation);
-        obj.transform.DOJump( obj.transform.position + (randomDir * distance), 1f, 1, 0.5f);
+        obj.transform.DOJump(obj.transform.position + (randomDir * distance), 1f, 1, 0.5f);
     }
 
     private IEnumerator enumerator()

@@ -7,4 +7,6 @@ public enum SpawnEnumID
     LokCave2_1,
     lokCave2_2,
     LokCave3,
+    LokSmith_1,
+    LokWorldSmith
 }

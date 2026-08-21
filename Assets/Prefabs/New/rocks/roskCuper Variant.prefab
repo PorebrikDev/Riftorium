@@ -8,6 +8,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6393073568606451801, guid: d93824494a19d3f4a855c3c14560ef63,
+        type: 3}
+      propertyPath: _amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393073568606451801, guid: d93824494a19d3f4a855c3c14560ef63,
+        type: 3}
+      propertyPath: _itemSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 95d4bb1ebb115cc4ebab5643211dc0c3,
+        type: 2}
+    - target: {fileID: 6393073568606451801, guid: d93824494a19d3f4a855c3c14560ef63,
+        type: 3}
+      propertyPath: _prefab
+      value: 
+      objectReference: {fileID: 7437407067380603373, guid: 0d751083eb35812489e8ea332bc0c29d,
+        type: 3}
     - target: {fileID: 7297597939198533965, guid: d93824494a19d3f4a855c3c14560ef63,
         type: 3}
       propertyPath: m_Sprite
@@ -72,5 +89,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8763878272483263417, guid: d93824494a19d3f4a855c3c14560ef63,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4013791887404765892}
   m_SourcePrefab: {fileID: 100100000, guid: d93824494a19d3f4a855c3c14560ef63, type: 3}
+--- !u!1 &8200076003132586542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8763878272483263417, guid: d93824494a19d3f4a855c3c14560ef63,
+    type: 3}
+  m_PrefabInstance: {fileID: 599833581133314455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4013791887404765892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8200076003132586542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453be74a43a39aa4bbf0a802333955ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemSo: {fileID: 0}
+  _prefab: {fileID: 0}
+  _amount: 0
+  _countObject: 1

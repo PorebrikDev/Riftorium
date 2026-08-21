@@ -135,12 +135,27 @@ public class InputService : MonoBehaviour
 
     public Vector2 GetMovementVector() => _input.Player.Move.ReadValue<Vector2>();
 
-    public void DisableMovement() => _input.Disable();
     public void EnableCombat() => _input.Combat.Enable();
     public void DisableCombat() => _input.Combat.Disable();
 
-    public void EnablePlayer() => _input.Player.Enable();
-    public void DisablePlayer() => _input.Player.Disable();
+    public void SetControl(bool value)
+    {
+        if (value)
+        {
+            _input.Player.Enable();
+            _input.Combat.Enable();
+            _input.Interaction.Touch.Enable();
+            _input.Interaction.Inventory.Enable();
+        }
+
+        else
+        {
+            _input.Player.Disable();
+            _input.Combat.Disable();
+            _input.Interaction.Touch.Disable();
+            _input.Interaction.Inventory.Disable();
+        }
+    }
 
     public void StateDeath(bool current)
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4178718877330453658}
   - component: {fileID: 3512322929347046529}
   - component: {fileID: 815060308819278879}
+  - component: {fileID: -8934210866334339698}
   m_Layer: 0
   m_Name: roskEmpty
   m_TagString: Untagged
@@ -150,3 +151,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0666327, y: 0.9649702}
   m_EdgeRadius: 0
+--- !u!114 &-8934210866334339698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676265038526551662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453be74a43a39aa4bbf0a802333955ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemSo: {fileID: 11400000, guid: 95d4bb1ebb115cc4ebab5643211dc0c3, type: 2}
+  _prefab: {fileID: 7437407067380603373, guid: 0d751083eb35812489e8ea332bc0c29d, type: 3}
+  _amount: 1
+  _countObject: 1

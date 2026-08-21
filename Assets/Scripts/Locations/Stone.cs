@@ -11,7 +11,12 @@ public class Stone : MonoBehaviour, IDamageableInt
     [Inject] private AudioManager _audioManager;
 
     private readonly int _damageToStone = 1;
+    private Droped _drop;
 
+    private void Awake()
+    {
+        _drop = GetComponent<Droped>();
+    }
     public void TakeDamage(DamageContext ctx)
     {
 
@@ -35,6 +40,7 @@ public class Stone : MonoBehaviour, IDamageableInt
     {
         if (hp <= 0)
         {
+            _drop.DropThis();
             gameObject.SetActive(false);
         }
     }

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IDamageableInt
     public float MaxMana => _heroSO.MaxMana;
     public float CurrentHealth => _currentHealth;
     public Vector2 LastMoveDirection => _lastMoveDirection;
-    public Vector2 StartTransPos => _stratTransPos;
+    //public Vector2 StartTransPos => _stratTransPos;
     public bool IsAlive() => _isAlive;
 
     [SerializeField] private HeroSO _heroSO;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, IDamageableInt
         _heroCurrentSpeed = _heroSO.heroBaseSpeed;
         _currentHealth = _heroSO.maxHealth;
         _currentMana = _heroSO.MaxMana;
-        transform.position = CurrentTransPos;
+        CurrentTransPos = transform.position;
 
         _canTakeDamage = true;
         _isAlive = true;
@@ -95,7 +95,6 @@ public class Player : MonoBehaviour, IDamageableInt
 
         _uiDeath.OnRespStart += Respawn;
 
-        _stratTransPos = transform.position;
     }
 
     private void Update()
@@ -182,7 +181,7 @@ public class Player : MonoBehaviour, IDamageableInt
     private void GameInput_OnPlayerAttack()
     {
         Tool active = ActiveWeapon.Instance.GetActiveWeapon();
-        if (active != null & player_WaponEvent.CanAttack)
+        if (active != null && player_WaponEvent.CanAttack)
         {
             ActiveWeapon.Instance.GetActiveWeapon().Attack();
             ActiveWeapon.Instance.VisualAttack();

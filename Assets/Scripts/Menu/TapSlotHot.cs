@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -6,6 +7,9 @@ public class TapSlotHot : MonoBehaviour
 {
     [SerializeField] private int _buttonIndex;
     [SerializeField] private Image _image;
+
+    [SerializeField] private TMP_Text _amountText;
+
 
     [Inject] private readonly InputService _input;
     [Inject] private readonly Inventory _inventory;
@@ -19,6 +23,9 @@ public class TapSlotHot : MonoBehaviour
         _clickButton.onClick.AddListener(OnButtonClicked);
         _input.OnNumberKeyPressed += ClickHotSlot;
         _image = transform.GetChild(0).GetComponent<Image>();
+
+        _amountText = transform.GetChild(1).GetComponent<TMP_Text>();
+
     }
 
     private void Start()
@@ -43,11 +50,14 @@ public class TapSlotHot : MonoBehaviour
         {
             _image.sprite = null;
             _image.enabled = false;
+            _amountText.text = "";
             return;
         }
 
         _image.sprite = slot.Icon.sprite;
         _image.enabled = true;
+
+        _amountText.text = slot.Amount > 1 ? slot.Amount.ToString() : "";
     }
 
     private void OnButtonClicked()
@@ -65,11 +75,14 @@ public class TapSlotHot : MonoBehaviour
         if (slot == null || slot.SlotItem == null)
         {
             _image.enabled = false;
+            _amountText.text = "";
             return;
         }
 
         _image.sprite = slot.Icon.sprite;
         _image.enabled = true;
+
+        _amountText.text = slot.Amount > 1 ? slot.Amount.ToString() : "";
 
         _useOfItems.Use(slot.SlotItem);
     }

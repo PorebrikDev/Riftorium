@@ -7,12 +7,13 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     public event Action OnInventoryChanged;
-    public InventorySlot[] InventorySlots => _inventorySlots;
 
     [Inject] private readonly InputService _input;
     [Inject] private readonly Iteminfo _iteminfo;
 
+    public InventorySlot[] InventorySlots => _inventorySlots;
     private InventorySlot[] _inventorySlots = new InventorySlot[14];
+
     public Transform _slotsParent;
 
     private bool _isInventory;
@@ -40,7 +41,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         { Destroy(gameObject); }
 
         Instance = this;
@@ -57,18 +58,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void PutInEmptySlot(ItemSO item, GameObject obj)
+    public void AddItem(ItemSO item, GameObject obj, int amount = 1)
     {
+        for (int i = 0; i < _inventorySlots.Length; i++)
+        {
+            if (_inventorySlots[i].SlotItem == item)
+            { 
+                _inventorySlots[i].AddAmount(amount);
+                obj.SetActive(false);
+                NotifyInventoryChanged();
+                return;
+            }
+        }
+
+
         for (int i = 0; i < _inventorySlots.Length; i++)
         {
             if (_inventorySlots[i].SlotItem == null)
             {
-                _inventorySlots[i].PutInSlot(item, obj);
+                _inventorySlots[i].PutInSlot(item, obj, amount);
 
                 NotifyInventoryChanged();
                 return;
             }
         }
+        Debug.Log("Инвентарь заполнен!");
     }
 
     public void NotifyInventoryChanged() => OnInventoryChanged?.Invoke();

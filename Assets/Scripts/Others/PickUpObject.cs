@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PickUpObject : MonoBehaviour, IInteractable
 {
-    public ItemSO item;
+    public ItemSO Item;
+    public int Amount = 1;
+
+
 
     private GameObject self;
 
@@ -11,12 +14,19 @@ public class PickUpObject : MonoBehaviour, IInteractable
         self = gameObject;
     }
 
-    public void Init(ItemSO data) => item = data;
+    public void Init(ItemSO data, int amount)
+    {
+        Item = data;
+        Amount = amount;
+    }
+ 
 
     public void Interact()
     {
         Debug.Log("Предмет получен");
-        Inventory.Instance.PutInEmptySlot(item, self);
+        Inventory.Instance.AddItem(Item, self, Amount );
         gameObject.SetActive(false);
     }
+
+
 }
