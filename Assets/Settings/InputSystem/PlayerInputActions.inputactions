@@ -494,6 +494,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialog",
+            "id": "5765ad3a-4a35-412e-b05f-cf1726f2d623",
+            "actions": [
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "aa5c04e2-9a23-41c3-a1c3-886e7b6265df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "42025266-8300-403c-9bbd-230e615970fa",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

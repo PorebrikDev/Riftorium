@@ -41,6 +41,7 @@ public class EnemyBrain : MonoBehaviour
 
     public Vector3 VectorToPlayer => _player.transform.position - transform.position;
 
+     [SerializeField] private UI_HPTrans _hpTrans;
     private EnemyMovement _movement;
     private Coroutine _coroutine;
     private WaitForSeconds _wait;
@@ -56,15 +57,18 @@ public class EnemyBrain : MonoBehaviour
         Combat = GetComponent<EnemyCombat>();
         _movement = GetComponent<EnemyMovement>();
         EnemyLife = GetComponent<EnemyLife>();
+        _hpTrans.Init(EnemyLife);
         _wait = new WaitForSeconds(_runDuration);
         _waitThink = new WaitForSeconds(0.2f);
         _spawnPos = transform.position;
     }
 
+
     private void OnEnable()
     {
         transform.position = _spawnPos;
         _coroutine = StartCoroutine(ThinkRoutine());
+        _hpTrans.gameObject.SetActive(true);
     }
 
     private void OnDisable()
@@ -73,6 +77,8 @@ public class EnemyBrain : MonoBehaviour
         {
             StopCoroutine(_coroutine);
         }
+        _hpTrans.gameObject.SetActive(false);
+
     }
 
     private void OnDestroy()

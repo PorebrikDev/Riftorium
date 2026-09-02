@@ -4,6 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "NPC/Dialogue")]
 public class DialogueData : ScriptableObject
 {
+    public DialogueStage[] stages;
+}
+
+[Serializable]
+public class DialogueStage
+{
     public DialogueLine[] lines;
 }
 

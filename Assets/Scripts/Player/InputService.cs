@@ -20,6 +20,7 @@ public class InputService : MonoBehaviour
     public event Action OnMenuStarted;
     public event Action OnF1Started;
     public event Action<int> OnNumberKeyPressed;
+    public event Action OnDialogStarted;    
 
     [Inject] private readonly Inventory _inventory;
     [Inject] private readonly Player _player;
@@ -73,6 +74,7 @@ public class InputService : MonoBehaviour
         _input.Interaction.Inventory.started += OnInventoryStartedHandler;
         _input.Interaction.Menu.started += OnMenuStartedHandler;
         _input.Interaction.ControlF1.started += OnControlF1Handler;
+        _input.Dialog.Space.started += DialogStarted;
 
         _input.Interaction._1.started += _number1Handler;
         _input.Interaction._2.started += _number2Handler;
@@ -221,4 +223,6 @@ public class InputService : MonoBehaviour
     private void OnDashCanceledHandler(InputAction.CallbackContext obj) => OnDashCanceled?.Invoke();
 
     private void PlayerJerkStarted(InputAction.CallbackContext obj) => OnJerk?.Invoke();
+
+    public void DialogStarted(InputAction.CallbackContext context) => OnDialogStarted?.Invoke();
 }

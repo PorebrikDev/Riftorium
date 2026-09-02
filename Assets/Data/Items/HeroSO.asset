@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 15
   MaxMana: 20
   heroDamageAmount: 1
-  heroBaseSpeed: 4
+  heroBaseSpeed: 10
   heroDashMultiplier: 1.5
   heroJerkMultiplier: 3
   herpJerkTimer: 0.3

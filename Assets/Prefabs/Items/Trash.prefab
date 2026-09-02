@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4800912064294895613}
   - component: {fileID: 2244344034512028663}
   - component: {fileID: 6641657710366632304}
+  - component: {fileID: 3699376524146861732}
   m_Layer: 23
   m_Name: Trash
   m_TagString: Untagged
@@ -196,3 +197,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.93059826, y: 0.6465025}
   m_EdgeRadius: 0
+--- !u!50 &3699376524146861732
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321588358307139021}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDrag: 3
+  m_AngularDrag: 5
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: a479851918e7e1e4a8a9966a2a6ab53d, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4

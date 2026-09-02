@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
 
     [Inject] private readonly InputService _input;
 
+
     [SerializeField] private Image _dialogueWindow;
     [SerializeField] private Image _portrait;
     [SerializeField] private Image _iconColor;
@@ -19,6 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueData _currentDialogue;
     private int _index;
+    private int _stage;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData Tolkdata, NPCData npcData)
     {
+        _input.OnDialogStarted += NextLine;
         Debug.Log($"NPC: {npcData.Name}");
         Debug.Log($"Color: {npcData.PortraitColor}");
         _index = 0;
@@ -45,14 +48,14 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowLine()
     {
-        _text.text = _currentDialogue.lines[_index].text;
+        _text.text = _currentDialogue.stages[_stage].lines[_index].text;
     }
 
     private void NextLine()
     {
         _index++;
 
-        if (_index >= _currentDialogue.lines.Length)
+        if (_index >= _currentDialogue.stages[_stage].lines.Length)
         {
             CloseDialogue();
             return;
@@ -63,12 +66,13 @@ public class DialogueManager : MonoBehaviour
 
     private void CloseDialogue()
     {
+        _input.OnDialogStarted -= NextLine;
+
         _dialogueWindow.gameObject.SetActive(false);
         _input.SetControl(true);
 
         OnDialogueClose?.Invoke();
 
     }
-
 
 }
