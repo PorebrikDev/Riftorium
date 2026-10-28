@@ -1,28 +1,62 @@
-# 2D Top-Down RPG (Portfolio Project)
+# Rifrorium — 2D Top-Down RPG на Unity
 
-## About
-A hand-crafted 2D top-down RPG built entirely in Unity. All assets, sprites, tilemaps, and animations are created manually. Features procedural cave levels, animated environments, and a functional combat & tool system.
+**Rifrorium** — это 2D RPG с видом сверху (top-down), полностью созданная на Unity. Все спрайты, тайлмапы, анимации и ассеты нарисованы вручную. Проект включает процедурную генерацию пещер, анимированное окружение, а также продуманную систему боя и инструментов.
 
-## Features
-- **Enemies:** Slimes hiding in bushes with state machine AI
-- **Environment:** 2D navmesh, destructible rocks (axes & pickaxes), animated water & trees
-- **Player:** Blend tree movement in 8 directions, 4 tool types (axe, pickaxe, sword, healing items)
-- **Inventory & Hotkeys:** Quick access to items and weapons
-- **Procedural elements:** Auto-generating resources by rarity
-- **Handmade assets:** All sprites, tiles, and tile rules created by hand
-- **Future plans:** Sounds, music, quests
+## 🎮 Играть в браузере
+Вы можете запустить игру прямо сейчас, не устанавливая Unity: 
+👉 **[Rifrorium WebGL Demo](https://porebrikdev.itch.io/riftoriumwebgl)**
 
-## How to Play
-1. Open project in Unity 2023+
-2. Load `Scenes/Main.unity`
-3. Press Play
+<table>
+  <tr>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/be5b5946-c07d-4cc9-8fd1-eb27d179ca82" alt="Геймплей Rifrorium 2D RPG" width="100%" />
+    </td>
+    <td width="50%">
+      <h3>Ключевые особенности</h3>
+      <ul>
+        <li><b>Враги и ИИ:</b> Слаймы, прячущиеся в кустах, с поведением на основе конечных автоматов (FSM).</li>
+        <li><b>Окружение:</b> 2D NavMesh для навигации, разрушаемые камни, анимированная вода и деревья.</li>
+        <li><b>Управление персонажем:</b> Передвижение в 8 направлениях через Blend Tree, 4 типа инструментов (топор, кирка, меч, зелья).</li>
+        <li><b>Инвентарь и хоткеи:</b> Быстрый доступ к предметам и оружию.</li>
+        <li><b>Процедурная генерация:</b> Автоматическое создание ресурсов с системой редкости.</li>
+        <li><b>Архитектура (Data-Driven):</b> Параметры вынесены в ScriptableObjects для гибкой настройки баланса.</li>
+        <li><b>Графика:</b> Все спрайты, тайлы и правила тайлмапов нарисованы вручную.</li>
+        <li><b>Планы:</b> Добавление звуков, музыки и квестов.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-<img width="692" height="388" alt="Image" src="https://github.com/user-attachments/assets/be5b5946-c07d-4cc9-8fd1-eb27d179ca82" />
+## О проекте
 
-## Notes for Employers
-This project demonstrates:
-- Full end-to-end Unity development
-- Manual asset creation & animation
-- AI & state machines
-- Procedural content generation
-- Systematic project structure for maintainability
+Проект демонстрирует полный цикл разработки 2D-игры: от создания графики до программирования игровой логики. Помимо программирования, в проекте спроектирован полноценный игровой цикл (Core Loop): от исследования подземелья и сбора ресурсов до сражений и крафта. Все балансные параметры (характеристики врагов, урон оружия, награды) вынесены в ScriptableObjects, что позволяет гибко настраивать геймплей без изменения кода.
+
+Здесь реализованы продвинутые механики, такие как 2D NavMesh, конечные автоматы (State Machine) для ИИ и процедурная расстановка ресурсов.
+
+## Как запустить
+
+1. Откройте проект в **Unity 2023** или новее.
+2. Загрузите сцену `Scenes/Main.unity`.
+3. Нажмите **Play**.
+
+## Скриншоты
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7aebbdf4-e8b9-4eb1-8290-cae19e89a369" width="49%" alt="Скриншот 1" />
+  <img src="https://github.com/user-attachments/assets/6b22b944-5097-4584-84dd-d7e979d66bc2" width="49%" alt="Скриншот 2" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/597bbf7c-de33-4b77-81ef-400c7779dabf" width="49%" alt="Скриншот 3" />
+  <img src="https://github.com/user-attachments/assets/3d20eb9a-d448-4288-925a-90dd67a6e08a" width="49%" alt="Скриншот 4" />
+</p>
+
+## Для работодателей и ревьюеров
+
+Этот проект наглядно демонстрирует следующие навыки:
+
+- **Полный цикл разработки на Unity:** создание игры от идеи до релизной сборки.
+- **Игровой дизайн:** проектирование боевого цикла, поведения врагов, структуры подземелья и системы инвентаря.
+- **Создание графики вручную:** отрисовка всех спрайтов, тайлов и анимаций с нуля, без использования готовых ассетов.
+- **Искусственный интеллект:** программирование логики поведения врагов на основе конечных автоматов.
+- **Процедурная генерация:** разработка алгоритмов для автоматического создания уровней и распределения ресурсов по редкости.
+- **Архитектура проекта:** чистая и масштабируемая структура кода (Data-Driven подход через ScriptableObjects), готовая к дальнейшей поддержке и расширению.
