@@ -1,15 +1,15 @@
-# Rifrorium — 2D Top-Down RPG на Unity
+# Riftorium — 2D Top-Down RPG на Unity
 
-**Rifrorium** — это 2D RPG с видом сверху (top-down), полностью созданная на Unity. Все спрайты, тайлмапы, анимации и ассеты нарисованы вручную. Проект включает процедурную генерацию пещер, анимированное окружение, а также продуманную систему боя и инструментов.
+**Riftorium** — это 2D RPG с видом сверху (top-down), полностью созданная на Unity. Все спрайты, тайлмапы, анимации и ассеты нарисованы вручную. Проект включает процедурную генерацию пещер, анимированное окружение, а также продуманную систему боя и инструментов.
 
 ## 🎮 Играть в браузере
 Вы можете запустить игру прямо сейчас, не устанавливая Unity: 
-👉 **[Rifrorium WebGL Demo](https://porebrikdev.itch.io/riftoriumwebgl)**
+👉 **[Riftorium WebGL Demo](https://porebrikdev.itch.io/riftoriumwebgl)**
 
 <table>
   <tr>
     <td width="50%">
-      <img src="https://github.com/user-attachments/assets/be5b5946-c07d-4cc9-8fd1-eb27d179ca82" alt="Геймплей Rifrorium 2D RPG" width="100%" />
+      <img src="https://github.com/user-attachments/assets/be5b5946-c07d-4cc9-8fd1-eb27d179ca82" alt="Геймплей Riftorium 2D RPG" width="100%" />
     </td>
     <td width="50%">
       <h3>Ключевые особенности</h3>
